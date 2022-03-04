@@ -6,7 +6,7 @@ function updateSubtotal(product) {
   const price = product.querySelector('.price span').innerHTML;
   const quantity = product.querySelector('.quantity input').value;
   // Step 3
-  const subtotal = Number(price) * Number(quantity);
+  const subtotal = Number(price * quantity);
   // Step 4
   const subtotalElement = product.querySelector('.subtotal span');
   // Step 5
@@ -52,41 +52,6 @@ function removeProduct(event) {
 
 // ITERATION 5
 
-// function createProduct() {
-//   //... your code goes here
-//   let productName = document.querySelector('#newProduct');
-//   let productPrice = document.querySelector('#newPrice');
-
-//   let tbody = document.querySelector('tbody');
-
-//   // Product template
-//   let newProduct = `
-//   <tr class="product">
-//      <td class="name">
-//          <span>${productName.value}</span>
-//      </td>
-//      <td class="price">$<span>${productPrice.value}</span></td>
-//      <td class="quantity">
-//        <input type="number" value="0" min="0" placeholder="Quantity" />
-//      </td>
-//      <td class="subtotal">$<span>0</span></td>
-//      <td class="action">
-//        <button class="btn btn-remove">Remove</button>
-//      </td>
-//    </tr>`;
-
-//   tbody.appendChild(newProduct);
-
-//   // Adding functionality to the Remove Button
-//   const createdRemoveBtn = newProduct.querySelector('.btn-remove');
-//   createdRemoveBtn.addEventListener('click', removeProduct);
-
-//   // Clearing the input fields
-//   productName.value = "";
-//   productPrice.value = 0;
-
-// }
-
 function createProduct() {
   let productName = document.querySelector('#newProduct');
   let productPrice = document.querySelector('#newPrice');
@@ -97,7 +62,7 @@ function createProduct() {
        <td class="name">
            <span>${productName.value}</span>
        </td>
-       <td class="price">$<span>${productPrice}</span></td>
+       <td class="price">$<span>${productPrice.value}</span></td>
        <td class="quantity">
          <input type="number" value="0" min="0" placeholder="Quantity" />
        </td>
@@ -106,13 +71,9 @@ function createProduct() {
          <button class="btn btn-remove">Remove</button>
        </td>
      </tr>`
-  ;
+    ;
 
-  //   // Adding functionality to the Remove Button
-//   const createdRemoveBtn = newProduct.querySelector('.btn-remove');
-//   createdRemoveBtn.addEventListener('click', removeProduct);
-
-//   // Clearing the input fields
+  // Clearing the input fields
   productName.value = "";
   productPrice.value = 0;
 }
@@ -124,9 +85,7 @@ window.addEventListener('load', () => {
   //... your code goes here
 
   const removeBtn = document.querySelectorAll('.btn-remove');
-  removeBtn.forEach(button => {
-    button.addEventListener('click', removeProduct);
-  })
+  removeBtn.forEach(button => button.onclick = removeProduct);
 
   const addButton = document.getElementById('create');
   addButton.onclick = createProduct;
